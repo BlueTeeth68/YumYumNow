@@ -70,18 +70,18 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         // Bind elements
-
+        bindUserData(view);
 
         // return view
         return view;
     }
 
-    private void bindUserData() {
+    private void bindUserData(View view) {
 
-        avatarImg = getView().findViewById(R.id.avatarImg);
-        idTxt = getView().findViewById(R.id.idTxt);
-        usernameTxt = getView().findViewById(R.id.usernameTxt);
-        fullnameTxt = getView().findViewById(R.id.fullnameTxt);
+        avatarImg = view.findViewById(R.id.avatarImg);
+        idTxt = view.findViewById(R.id.idTxt);
+        usernameTxt = view.findViewById(R.id.usernameTxt);
+        fullnameTxt = view.findViewById(R.id.fullnameTxt);
 
         idTxt.setFocusable(false);
         usernameTxt.setFocusable(false);
@@ -90,7 +90,7 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(getActivity(), "No User Data!", Toast.LENGTH_SHORT).show();
         } else {
             avatarImg.setImageResource(MainActivity.user.getAvatar());
-            idTxt.setText(MainActivity.user.getId());
+            idTxt.setText(String.valueOf(MainActivity.user.getId()));
             usernameTxt.setText(MainActivity.user.getUsername());
             fullnameTxt.setText(MainActivity.user.getFullName());
         }

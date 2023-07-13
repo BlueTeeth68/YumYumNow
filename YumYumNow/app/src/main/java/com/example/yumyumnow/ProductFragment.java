@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.yumyumnow.dto.ProductDTO;
 
@@ -60,6 +64,11 @@ public class ProductFragment extends Fragment {
     }
 
     ArrayList<ProductDTO> productsList;
+    String[] categories = new String[]{"All", "Food", "Drink"};
+    String[] sortOptions = new String[]{"None", "Name ASC", "Name DESC", "Price ASC", "Price DESC"};
+    Spinner categorySpinner, sortSpinner;
+    EditText searchProductTxt;
+    Button searchBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,10 +76,40 @@ public class ProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
-
+        bindElements(view);
 
         return view;
     }
 
+    private void bindElements(View view){
+        // category spinner
+        categorySpinner = view.findViewById(R.id.categorySpinner);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item,
+                categories);
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(categoryAdapter);
+
+        // sort spinner
+        sortSpinner = view.findViewById(R.id.sortSpinner);
+        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item,
+                sortOptions);
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(sortAdapter);
+
+        // search text
+        searchProductTxt = view.findViewById(R.id.searchProductTxt);
+
+        // search button
+        searchBtn = view.findViewById(R.id.searchProductBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
+    }
 
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment {
     }
 
     ImageView avatarImg;
-
+    TextView welcomeTxt;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +67,10 @@ public class HomeFragment extends Fragment {
 
         // bind elements
         avatarImg = view.findViewById(R.id.avatarImg);
+        avatarImg.setImageResource(MainActivity.user.getAvatar());
+
+        welcomeTxt = view.findViewById(R.id.welcomeTxt);
+        welcomeTxt.setText("Welcome, " + MainActivity.user.getUsername());
 
         return view;
     }
