@@ -29,7 +29,7 @@ public class Provider extends ContentProvider {
     public static final Uri uriCart = Uri.parse(URL_TABLE_CART);
     public static final Uri uriBillDetail = Uri.parse(URL_TABLE_BILL_DETAIL);
 
-    private DBHelper dbHelper;
+
     private SQLiteDatabase db;
     public static final UriMatcher uriMatcher;
 
@@ -44,7 +44,7 @@ public class Provider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        dbHelper = new DBHelper(getContext());
+        DBHelper dbHelper = new DBHelper(getContext());
         db = dbHelper.getWritableDatabase();
         return db != null;
     }
@@ -137,6 +137,7 @@ public class Provider extends ContentProvider {
         if (id != -1) {
             // Notify any observers that the data has changed
             getContext().getContentResolver().notifyChange(uri, null);
+            //Return the uri of new item inserted
             return ContentUris.withAppendedId(uri, id);
         } else {
             throw new SQLException("Fail to insert row to uri: " + uri);
