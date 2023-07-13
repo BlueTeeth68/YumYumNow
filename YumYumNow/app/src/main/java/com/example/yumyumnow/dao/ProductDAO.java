@@ -41,15 +41,15 @@ public class ProductDAO {
         String selection = "";
         ArrayList<String> selectionArgs = new ArrayList<>();
         if (name != null && !name.trim().equals("")) {
-            selection = selection + "LOWER(" + DBHelper.COL_PRODUCT_NAME + ") LIKE ? ";
+            selection = selection + " LOWER(" + DBHelper.COL_PRODUCT_NAME + ") LIKE ? ";
             selectionArgs.add(name.toLowerCase());
         }
 
         if (category != null && !category.trim().equals("")) {
             if (!selection.equals("")) {
-                selection = " AND " + selection;
+                selection = selection + " AND ";
             }
-            selection = selection + "LOWER(" + DBHelper.COL_PRODUCT_CATEGORY + ") = ? ";
+            selection = selection + " LOWER(" + DBHelper.COL_PRODUCT_CATEGORY + ") = ? ";
             selectionArgs.add(category.toLowerCase());
         }
 
