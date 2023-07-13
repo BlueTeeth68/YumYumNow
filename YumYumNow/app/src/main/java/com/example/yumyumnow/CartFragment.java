@@ -3,10 +3,22 @@ package com.example.yumyumnow;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.yumyumnow.dao.CartDAO;
+import com.example.yumyumnow.dto.CartDTO;
+import com.example.yumyumnow.dto.ProductDTO;
+import com.example.yumyumnow.util.adapters.CartProductAdapter;
+import com.example.yumyumnow.util.adapters.ProductAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,10 +67,43 @@ public class CartFragment extends Fragment {
         }
     }
 
+    List<CartDTO> cartProducts;
+    CartDAO cartDao;
+    RecyclerView productsRecyclerView;
+    CartProductAdapter cartProductAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        cartDao = new CartDAO(getActivity());
+
+        bindElements(view);
+
+        loadCartProducts();
+
+        return view;
+    }
+
+    private void loadCartProducts() {
+        List<CartDTO> list = cartDao.getCartOfUser(MainActivity.user.getId());
+        if (list == null || list.isEmpty()) {
+            Toast.makeText(getActivity(), "User has no item in cart!", Toast.LENGTH_SHORT).show();
+        } else {
+            setCartProductsList(list);
+        }
+    }
+
+    private void setCartProductsList(List<CartDTO> products) {
+        cartProductAdapter = new CartProductAdapter(products, getActivity());
+        productsRecyclerView.setAdapter(cartProductAdapter);
+        productsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    private void bindElements(View view) {
+        // cart product recycler view
+        productsRecyclerView = view.findViewById(R.id.cartProductRecyclerView);
     }
 }
