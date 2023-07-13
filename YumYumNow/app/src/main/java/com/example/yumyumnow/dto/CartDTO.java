@@ -4,14 +4,8 @@ package com.example.yumyumnow.dto;
 public class CartDTO {
 
     private int userId;
-    private int productId;
+    private ProductDTO product;
     private int quantity;
-
-    public CartDTO(int userId, int productId, int quantity) {
-        this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
-    }
 
     public CartDTO() {
     }
@@ -24,12 +18,12 @@ public class CartDTO {
         this.userId = userId;
     }
 
-    public int getProductId() {
-        return productId;
+    public ProductDTO getProduct() {
+        return product;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct(ProductDTO product) {
+        this.product = product;
     }
 
     public int getQuantity() {
