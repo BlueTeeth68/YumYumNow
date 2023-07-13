@@ -3,6 +3,8 @@ package com.example.yumyumnow;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.yumyumnow.dao.ProductDAO;
 import com.example.yumyumnow.dto.ProductDTO;
+import com.example.yumyumnow.util.adapters.ProductAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,8 +72,11 @@ public class ProductFragment extends Fragment {
     String[] categories = new String[]{"All", "Food", "Drink"};
     String[] sortOptions = new String[]{"None", "Name ASC", "Name DESC", "Price ASC", "Price DESC"};
     Spinner categorySpinner, sortSpinner;
+    RecyclerView productList;
     EditText searchProductTxt;
     Button searchBtn;
+    ProductDAO productDAO;
+    ProductAdapter productAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,12 +84,29 @@ public class ProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
+        productDAO = new ProductDAO(getActivity());
+
         bindElements(view);
+
+        loadInitialProduct();
 
         return view;
     }
 
-    private void bindElements(View view){
+    private void setProductsList(ArrayList<ProductDTO> products) {
+        productAdapter = new ProductAdapter(getActivity(), products);
+        productList.setAdapter(productAdapter);
+        productList.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    private void loadInitialProduct(){
+        List<ProductDTO> list = productDAO.getProductByFilter(null, null, null, null);
+        ArrayList<ProductDTO> arrayList = new ArrayList<>(list);
+
+        setProductsList(arrayList);
+    }
+
+    private void bindElements(View view) {
         // category spinner
         categorySpinner = view.findViewById(R.id.categorySpinner);
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getActivity(),
@@ -98,6 +123,9 @@ public class ProductFragment extends Fragment {
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sortSpinner.setAdapter(sortAdapter);
 
+        // product recycler view
+        productList = view.findViewById(R.id.productRecyclerView);
+
         // search text
         searchProductTxt = view.findViewById(R.id.searchProductTxt);
 
@@ -106,10 +134,43 @@ public class ProductFragment extends Fragment {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                String cateFilter = getCategoryFilter();
+                String sortNameFilter = null, sortPriceFilter = null;
+                sortNameFilter = getSortSelect();
+                sortPriceFilter = getSortSelect();
+                String searchTxt = searchProductTxt.getText().toString().trim();
+                List<ProductDTO> result = productDAO.getProductByFilter(searchTxt, cateFilter, sortNameFilter, sortPriceFilter);
+                ArrayList<ProductDTO> arrayList = new ArrayList<>(result);
+
+                setProductsList(arrayList);
             }
         });
+    }
 
+    private String getCategoryFilter() {
+        int index = categorySpinner.getSelectedItemPosition();
+        switch (index) {
+            case 1:
+                return "Food";
+            case 2:
+                return "Drink";
+            default:
+                return null;
+        }
+    }
+
+    private String getSortSelect() {
+        int index = sortSpinner.getSelectedItemPosition();
+        switch (index) {
+            case 1:
+            case 3:
+                return ProductDAO.ASC;
+            case 2:
+            case 4:
+                return ProductDAO.DESC;
+            default:
+                return null;
+        }
     }
 
 }
