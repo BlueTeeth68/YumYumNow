@@ -33,16 +33,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_CART_QUANTITY = "quantity";
 
     public static final String TABLE_BILL_NAME = "bill";
-    public static final String TABLE_BILL_ID = "id";
-    public static final String TABLE_BILL_USER_ID = "user_id";
-    public static final String TABLE_BILL_TOTAL_PRICE = "total_price";
-    public static final String TABLE_BILL_CREATE_DATE = "create_date";
+    public static final String COL_BILL_ID = "id";
+    public static final String COL_BILL_USER_ID = "user_id";
+    public static final String COL_BILL_TOTAL_PRICE = "total_price";
+    public static final String COL_BILL_CREATE_DATE = "create_date";
 
     public static final String TABLE_BILL_DETAIL_NAME = "bill_detail";
-    public static final String TABLE_BILL_DETAIL_BILL_ID = "bill_id";
-    public static final String TABLE_BILL_DETAIL_PRODUCT_ID = "product_id";
-    public static final String TABLE_BILL_DETAIL_QUANTITY = "quantity";
-    public static final String TABLE_BILL_DETAIL_PRICE = "price";
+    public static final String COL_BILL_DETAIL_BILL_ID = "bill_id";
+    public static final String COL_BILL_DETAIL_PRODUCT_ID = "product_id";
+    public static final String COL_BILL_DETAIL_QUANTITY = "quantity";
+    public static final String COL_BILL_DETAIL_PRICE = "price";
 
     public static final int DATABASE_VERSION = 1;
 
@@ -80,22 +80,22 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
         query = "CREATE TABLE " + TABLE_BILL_NAME +
-                " (" + TABLE_BILL_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                TABLE_BILL_USER_ID + " INTEGER NOT NULL, " +
-                TABLE_BILL_TOTAL_PRICE + " REAL NOT NULL, " +
-                TABLE_BILL_CREATE_DATE + " TEXT NOT NULL, " +
-                "FOREIGN KEY(" + TABLE_BILL_USER_ID + ") REFERENCES " + TABLE_USER_NAME + "(" + COL_USER_ID + "));";
+                " (" + COL_BILL_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+                COL_BILL_USER_ID + " INTEGER NOT NULL, " +
+                COL_BILL_TOTAL_PRICE + " REAL NOT NULL, " +
+                COL_BILL_CREATE_DATE + " TEXT NOT NULL, " +
+                "FOREIGN KEY(" + COL_BILL_USER_ID + ") REFERENCES " + TABLE_USER_NAME + "(" + COL_USER_ID + "));";
 
         db.execSQL(query);
 
         query = "CREATE TABLE " + TABLE_BILL_DETAIL_NAME +
-                " (" + TABLE_BILL_DETAIL_BILL_ID + " INTEGER NOT NULL, " +
-                TABLE_BILL_DETAIL_PRODUCT_ID + " INTEGER NOT NULL, " +
-                TABLE_BILL_DETAIL_QUANTITY + " INTEGER NOT NULL, " +
-                TABLE_BILL_DETAIL_PRICE + " REAL NOT NULL, " +
-                "FOREIGN KEY(" + TABLE_BILL_DETAIL_BILL_ID + ") REFERENCES " + TABLE_BILL_NAME + "(" + TABLE_BILL_ID + ")," +
-                "FOREIGN KEY(" + TABLE_BILL_DETAIL_PRODUCT_ID + ") REFERENCES " + TABLE_PRODUCT_NAME + "(" + COL_PRODUCT_ID + ")," +
-                "PRIMARY KEY (" + TABLE_BILL_DETAIL_BILL_ID + ", " + TABLE_BILL_DETAIL_PRODUCT_ID + "));";
+                " (" + COL_BILL_DETAIL_BILL_ID + " INTEGER NOT NULL, " +
+                COL_BILL_DETAIL_PRODUCT_ID + " INTEGER NOT NULL, " +
+                COL_BILL_DETAIL_QUANTITY + " INTEGER NOT NULL, " +
+                COL_BILL_DETAIL_PRICE + " REAL NOT NULL, " +
+                "FOREIGN KEY(" + COL_BILL_DETAIL_BILL_ID + ") REFERENCES " + TABLE_BILL_NAME + "(" + COL_BILL_ID + ")," +
+                "FOREIGN KEY(" + COL_BILL_DETAIL_PRODUCT_ID + ") REFERENCES " + TABLE_PRODUCT_NAME + "(" + COL_PRODUCT_ID + ")," +
+                "PRIMARY KEY (" + COL_BILL_DETAIL_BILL_ID + ", " + COL_BILL_DETAIL_PRODUCT_ID + "));";
 
         db.execSQL(query);
     }
