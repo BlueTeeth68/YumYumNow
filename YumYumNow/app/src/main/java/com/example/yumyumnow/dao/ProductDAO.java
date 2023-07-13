@@ -58,7 +58,7 @@ public class ProductDAO {
             sortOrder = DBHelper.COL_PRODUCT_NAME + " " + sortName;
         }
         if (sortPrice != null && !sortPrice.trim().equals("")) {
-            sortOrder = DBHelper.COL_PRODUCT_NAME + " " + sortPrice;
+            sortOrder = DBHelper.COL_PRODUCT_PRICE + " " + sortPrice;
         }
 
         Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs.toArray(new String[selectionArgs.size()]), sortOrder);
