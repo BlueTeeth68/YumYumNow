@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_BILL_DETAIL_QUANTITY = "quantity";
     public static final String COL_BILL_DETAIL_PRICE = "price";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
 
 
     public DBHelper(@Nullable Context context) {
@@ -74,6 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
         query = "CREATE TABLE " + TABLE_BILL_DETAIL_NAME + " (" + COL_BILL_DETAIL_BILL_ID + " INTEGER NOT NULL, " + COL_BILL_DETAIL_PRODUCT_ID + " INTEGER NOT NULL, " + COL_BILL_DETAIL_QUANTITY + " INTEGER NOT NULL, " + COL_BILL_DETAIL_PRICE + " REAL NOT NULL, " + "FOREIGN KEY(" + COL_BILL_DETAIL_BILL_ID + ") REFERENCES " + TABLE_BILL_NAME + "(" + COL_BILL_ID + ")," + "FOREIGN KEY(" + COL_BILL_DETAIL_PRODUCT_ID + ") REFERENCES " + TABLE_PRODUCT_NAME + "(" + COL_PRODUCT_ID + ")," + "PRIMARY KEY (" + COL_BILL_DETAIL_BILL_ID + ", " + COL_BILL_DETAIL_PRODUCT_ID + "));";
 
         db.execSQL(query);
+        initData(db);
     }
 
     @Override
@@ -92,7 +93,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //Insert sample data for User
         String insertQuery = "INSERT INTO " + TABLE_USER_NAME + " (" + COL_USER_USERNAME + ", " + COL_USER_PASSWORD + ", " + COL_USER_FULL_NAME + ", " + COL_USER_AVATAR + ") " + "VALUES (?, ?, ?, ?);";
-        db = getWritableDatabase();
 
         String username1 = "trihandsome";
         String password1 = "0000";
