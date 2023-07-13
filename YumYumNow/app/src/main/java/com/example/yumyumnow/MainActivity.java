@@ -12,6 +12,7 @@ import com.example.yumyumnow.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void getUsernameFromIntent() {
+        if (getIntent().hasExtra("username")) {
+            username = getIntent().getStringExtra("username");
+        }
     }
 }
