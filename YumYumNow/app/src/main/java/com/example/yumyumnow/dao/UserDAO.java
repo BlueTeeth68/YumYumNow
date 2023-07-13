@@ -19,6 +19,7 @@ import java.util.List;
 public class UserDAO {
 
     private final Context context;
+    private static final Uri uri = Provider.uriUser;
 
     public UserDAO(Context context) {
         this.context = context;
@@ -27,7 +28,6 @@ public class UserDAO {
     public UserDTO getUserByUsername(String username) {
 
         ContentResolver contentResolver = context.getContentResolver();
-        Uri uri = Provider.uriUser;
 
         String[] projection = new String[]{
                 DBHelper.COL_USER_ID,
@@ -47,7 +47,6 @@ public class UserDAO {
 
     public UserDTO login(UserLoginDTO credential) {
         ContentResolver contentResolver = context.getContentResolver();
-        Uri uri = Provider.uriUser;
 
         String[] projection = new String[]{
                 DBHelper.COL_USER_ID,
