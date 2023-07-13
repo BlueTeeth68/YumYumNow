@@ -114,8 +114,8 @@ public class CartDAO {
 
                 do {
                     int userId = cursor.getInt(nUserId);
-                    int quantity = cursor.getInt(nProductId);
-                    int productId = cursor.getInt(nQuantity);
+                    int quantity = cursor.getInt(nQuantity);
+                    int productId = cursor.getInt(nProductId);
                     ProductDTO product = productDAO.getProductById(productId);
 
                     CartDTO tmp = new CartDTO();
@@ -142,8 +142,8 @@ public class CartDAO {
                 int nQuantity = cursor.getColumnIndex(DBHelper.COL_CART_QUANTITY);
 
                 int userId = cursor.getInt(nUserId);
-                int quantity = cursor.getInt(nProductId);
-                int productId = cursor.getInt(nQuantity);
+                int quantity = cursor.getInt(nQuantity);
+                int productId = cursor.getInt(nProductId);
                 ProductDTO product = productDAO.getProductById(productId);
 
                 cartDTO = new CartDTO();
