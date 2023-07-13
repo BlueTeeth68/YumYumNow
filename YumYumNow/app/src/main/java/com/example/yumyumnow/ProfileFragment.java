@@ -7,7 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.yumyumnow.dto.UserDTO;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,8 +51,6 @@ public class ProfileFragment extends Fragment {
         return fragment;
     }
 
-    ImageView avatarImg;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +58,10 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
+
+    ImageView avatarImg;
+    EditText idTxt, usernameTxt, fullnameTxt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,9 +70,29 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         // Bind elements
-        avatarImg = getView().findViewById(R.id.avatarImg);
+
 
         // return view
         return view;
+    }
+
+    private void bindUserData() {
+
+        avatarImg = getView().findViewById(R.id.avatarImg);
+        idTxt = getView().findViewById(R.id.idTxt);
+        usernameTxt = getView().findViewById(R.id.usernameTxt);
+        fullnameTxt = getView().findViewById(R.id.fullnameTxt);
+
+        idTxt.setFocusable(false);
+        usernameTxt.setFocusable(false);
+
+        if (MainActivity.user == null) {
+            Toast.makeText(getActivity(), "No User Data!", Toast.LENGTH_SHORT).show();
+        } else {
+            avatarImg.setImageResource(MainActivity.user.getAvatar());
+            idTxt.setText(MainActivity.user.getId());
+            usernameTxt.setText(MainActivity.user.getUsername());
+            fullnameTxt.setText(MainActivity.user.getFullName());
+        }
     }
 }
