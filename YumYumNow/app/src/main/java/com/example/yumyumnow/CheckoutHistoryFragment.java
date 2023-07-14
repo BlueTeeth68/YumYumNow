@@ -5,23 +5,28 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
-import com.example.yumyumnow.dto.UserDTO;
+import com.example.yumyumnow.dao.BillDAO;
+import com.example.yumyumnow.dto.BillDTO;
+import com.example.yumyumnow.dto.CartDTO;
+import com.example.yumyumnow.util.adapters.BillHistoryAdapter;
+import com.example.yumyumnow.util.adapters.CheckoutProductAdapter;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link CheckoutHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class CheckoutHistoryFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +37,7 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ProfileFragment() {
+    public CheckoutHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +47,11 @@ public class ProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
+     * @return A new instance of fragment CheckoutHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
+    public static CheckoutHistoryFragment newInstance(String param1, String param2) {
+        CheckoutHistoryFragment fragment = new CheckoutHistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -63,56 +68,51 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    ImageView avatarImg;
-    EditText idTxt, usernameTxt, fullnameTxt;
-    Button showCheckout;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_checkout_history, container, false);
 
-        // Bind elements
-        bindUserData(view);
+        loadData();
 
-        // return view
+        bindElements(view);
+
+        setRecyclerViewData(billList);
+
         return view;
     }
-
-    private void bindUserData(View view) {
-
-        avatarImg = view.findViewById(R.id.avatarImg);
-        idTxt = view.findViewById(R.id.idTxt);
-        usernameTxt = view.findViewById(R.id.usernameTxt);
-        fullnameTxt = view.findViewById(R.id.fullnameTxt);
-
-
-        idTxt.setFocusable(false);
-        usernameTxt.setFocusable(false);
-
-        if (MainActivity.user == null) {
-            Toast.makeText(getActivity(), "No User Data!", Toast.LENGTH_SHORT).show();
-        } else {
-            avatarImg.setImageResource(MainActivity.user.getAvatar());
-            idTxt.setText(String.valueOf(MainActivity.user.getId()));
-            usernameTxt.setText(MainActivity.user.getUsername());
-            fullnameTxt.setText(MainActivity.user.getFullName());
-        }
-
-        showCheckout = view.findViewById(R.id.showCheckoutHistoryBtn);
-        showCheckout.setOnClickListener(new View.OnClickListener() {
+    BillDAO billDAO;
+    List<BillDTO> billList;
+    ImageButton profileBackBtn;
+    RecyclerView billListView;
+    private void bindElements(View view) {
+        profileBackBtn = view.findViewById(R.id.profileBackBtn);
+        profileBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switchFragment(new CheckoutHistoryFragment());
+                switchFragment(new ProfileFragment());
             }
         });
+
+        billListView = view.findViewById(R.id.billsList);
     }
 
+    private void loadData() {
+        billDAO = new BillDAO(getActivity());
+        billList = billDAO.getBillListOfUser(MainActivity.user.getId());
+    }
     private void switchFragment(Fragment fragment){
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, fragment);
         ft.commit();
     }
+
+    private void setRecyclerViewData(List<BillDTO> bills) {
+        BillHistoryAdapter billHistoryAdapter = new BillHistoryAdapter(getActivity(), bills, getActivity().getSupportFragmentManager());
+        billListView.setAdapter(billHistoryAdapter);
+        billListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
 }

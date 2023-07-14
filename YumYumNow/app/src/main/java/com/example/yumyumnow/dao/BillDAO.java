@@ -35,9 +35,11 @@ public class BillDAO {
     public boolean createBill(int userId, List<CartProductDTO> productItems) {
         double totalPrice = 0;
         List<ProductDTO> productDTOList = productItems.stream().map(item -> productDAO.getProductById(item.getProductId())).collect(Collectors.toList());
-        for (ProductDTO product : productDTOList) {
-            totalPrice += product.getPrice();
+
+        for (int i = 0; i < productDTOList.size(); i++) {
+            totalPrice += productDTOList.get(i).getPrice() * productItems.get(i).getQuantity();
         }
+
         ContentResolver contentResolver = context.getContentResolver();
 
         //Create bill
@@ -82,8 +84,23 @@ public class BillDAO {
         };
         String selection = DBHelper.COL_BILL_USER_ID + " = ? ";
         String[] selectionArgs = new String[]{String.valueOf(userId)};
-        Cursor cursor = contentResolver.query(uriBill, projection, selection, selectionArgs, null);
+        Cursor cursor = contentResolver.query(uriBill, projection, selection, selectionArgs, DBHelper.COL_BILL_ID + " desc");
         return getBillsFromCursor(cursor);
+    }
+
+    public BillDTO getBillById(int billId) {
+        ContentResolver contentResolver = context.getContentResolver();
+
+        String[] projection = new String[]{
+                DBHelper.COL_BILL_ID,
+                DBHelper.COL_BILL_USER_ID,
+                DBHelper.COL_BILL_TOTAL_PRICE,
+                DBHelper.COL_BILL_CREATE_DATE
+        };
+        String selection = DBHelper.COL_BILL_ID + " = ? ";
+        String[] selectionArgs = new String[]{String.valueOf(billId)};
+        Cursor cursor = contentResolver.query(uriBill, projection, selection, selectionArgs, DBHelper.COL_BILL_ID + " desc");
+        return getBillFromCursor(cursor);
     }
 
 
@@ -174,6 +191,38 @@ public class BillDAO {
                     result.add(tmp);
 
                 } while (cursor.moveToNext());
+            }
+            if (!cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return result;
+    }
+
+    private BillDTO getBillFromCursor(Cursor cursor) {
+        BillDTO result = null;
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int nBillId = cursor.getColumnIndex(DBHelper.COL_BILL_ID);
+                int nUserId = cursor.getColumnIndex(DBHelper.COL_BILL_USER_ID);
+                int nTotalPrice = cursor.getColumnIndex(DBHelper.COL_BILL_TOTAL_PRICE);
+                int nCreateDate = cursor.getColumnIndex(DBHelper.COL_BILL_CREATE_DATE);
+
+                int billId = cursor.getInt(nBillId);
+                int userId = cursor.getInt(nUserId);
+                double totalPrice = cursor.getDouble(nTotalPrice);
+                String createDate = cursor.getString(nCreateDate);
+
+                BillDTO tmp = new BillDTO();
+                tmp.setId(billId);
+                tmp.setUserId(userId);
+                tmp.setCreateDate(createDate);
+                tmp.setTotalPrice(totalPrice);
+                List<BillDetailDTO> billDetailDTOS = getBillDetail(billId);
+                tmp.setBillDetails(billDetailDTOS);
+                result = tmp;
             }
             if (!cursor.isClosed()) {
                 cursor.close();

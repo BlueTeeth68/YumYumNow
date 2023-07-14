@@ -116,7 +116,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
         boolean result = cartDAO.updateCartProductQuantity(item.getUserId(), increasingItem);
         if(result){
-            makeToastText("Product quantity increased!");
         }
         else{
             makeToastText("Error when trying to increase product quantity");
@@ -134,7 +133,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
             boolean result = cartDAO.updateCartProductQuantity(item.getUserId(), decreasingItem);
             if(result){
-                makeToastText("Product quantity decreased!");
             }
             else{
                 makeToastText("Error when trying to decrease product quantity");

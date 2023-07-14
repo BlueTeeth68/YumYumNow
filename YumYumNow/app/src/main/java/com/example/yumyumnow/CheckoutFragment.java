@@ -22,6 +22,7 @@ import com.example.yumyumnow.dto.CartDTO;
 import com.example.yumyumnow.dto.CartProductDTO;
 import com.example.yumyumnow.util.adapters.CheckoutProductAdapter;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +125,9 @@ public class CheckoutFragment extends Fragment {
         });
 
         totalCostTxt = view.findViewById(R.id.totalCostTxt);
-        totalCostTxt.setText(String.valueOf(totalCost + " $"));
+        DecimalFormat df = new DecimalFormat("#.##");
+        String totalCostString = df.format(totalCost);
+        totalCostTxt.setText(String.valueOf(totalCostString + " $"));
 
     }
 
