@@ -10,8 +10,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yumyumnow.CartFragment;
+import com.example.yumyumnow.ProductDetail;
+import com.example.yumyumnow.ProductFragment;
 import com.example.yumyumnow.R;
 import com.example.yumyumnow.dto.CartDTO;
 import com.example.yumyumnow.dto.CartProductDTO;
@@ -21,10 +26,12 @@ import java.util.List;
 public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.CartProductViewHolder> {
     List<CartDTO> products;
     Context context;
+    FragmentManager fragmentManager;
 
-    public CartProductAdapter(List<CartDTO> products, Context context) {
+    public CartProductAdapter(List<CartDTO> products, Context context, FragmentManager fragmentManager) {
         this.products = products;
         this.context = context;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -48,7 +55,13 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         holder.cartProductMainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProductDetail productDetail = new ProductDetail();
+                productDetail.setProduct(cartProduct.getProduct());
+                productDetail.setParentFragment(new CartFragment());
 
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, productDetail);
+                fragmentTransaction.commit();
             }
         });
 

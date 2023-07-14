@@ -97,7 +97,7 @@ public class CartFragment extends Fragment {
     }
 
     private void setCartProductsList(List<CartDTO> products) {
-        cartProductAdapter = new CartProductAdapter(products, getActivity());
+        cartProductAdapter = new CartProductAdapter(products, getActivity(), getActivity().getSupportFragmentManager());
         productsRecyclerView.setAdapter(cartProductAdapter);
         productsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

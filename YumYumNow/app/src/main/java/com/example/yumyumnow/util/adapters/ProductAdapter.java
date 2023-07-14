@@ -1,5 +1,6 @@
 package com.example.yumyumnow.util.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yumyumnow.ProductDetail;
+import com.example.yumyumnow.ProductFragment;
 import com.example.yumyumnow.R;
 import com.example.yumyumnow.dto.ProductDTO;
 
@@ -20,10 +25,12 @@ import java.util.ArrayList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     Context context;
     ArrayList<ProductDTO> products;
+    FragmentManager fragmentManager;
 
-    public ProductAdapter(Context context, ArrayList<ProductDTO> products) {
+    public ProductAdapter(Context context, ArrayList<ProductDTO> products, FragmentManager fragmentManager) {
         this.context = context;
         this.products = products;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -47,7 +54,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productMainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProductDetail productDetail = new ProductDetail();
+                productDetail.setProduct(product);
+                productDetail.setParentFragment(new ProductFragment());
 
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, productDetail);
+                fragmentTransaction.commit();
             }
         });
 

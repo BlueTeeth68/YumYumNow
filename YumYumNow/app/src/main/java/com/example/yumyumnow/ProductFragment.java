@@ -94,7 +94,7 @@ public class ProductFragment extends Fragment {
     }
 
     private void setProductsList(ArrayList<ProductDTO> products) {
-        productAdapter = new ProductAdapter(getActivity(), products);
+        productAdapter = new ProductAdapter(getActivity(), products, getActivity().getSupportFragmentManager());
         productList.setAdapter(productAdapter);
         productList.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
