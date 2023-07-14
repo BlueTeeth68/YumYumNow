@@ -87,7 +87,7 @@ public class CartFragment extends Fragment {
         return view;
     }
 
-    private void loadCartProducts() {
+    public void loadCartProducts() {
         List<CartDTO> list = cartDao.getCartOfUser(MainActivity.user.getId());
         if (list == null || list.isEmpty()) {
             Toast.makeText(getActivity(), "User has no item in cart!", Toast.LENGTH_SHORT).show();
@@ -97,7 +97,7 @@ public class CartFragment extends Fragment {
     }
 
     private void setCartProductsList(List<CartDTO> products) {
-        cartProductAdapter = new CartProductAdapter(products, getActivity(), getActivity().getSupportFragmentManager());
+        cartProductAdapter = new CartProductAdapter(products, getActivity(), getActivity().getSupportFragmentManager(), this);
         productsRecyclerView.setAdapter(cartProductAdapter);
         productsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -106,4 +106,5 @@ public class CartFragment extends Fragment {
         // cart product recycler view
         productsRecyclerView = view.findViewById(R.id.cartProductRecyclerView);
     }
+
 }

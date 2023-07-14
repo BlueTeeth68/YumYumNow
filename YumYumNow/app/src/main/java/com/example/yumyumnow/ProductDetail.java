@@ -12,9 +12,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.yumyumnow.dao.CartDAO;
+import com.example.yumyumnow.dto.CartDTO;
+import com.example.yumyumnow.dto.CartProductDTO;
 import com.example.yumyumnow.dto.ProductDTO;
 import com.example.yumyumnow.dto.UserDTO;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,12 +81,14 @@ public class ProductDetail extends Fragment {
     }
 
     Fragment fragment;
-    public void setParentFragment(Fragment fragment){
+
+    public void setParentFragment(Fragment fragment) {
         this.fragment = fragment;
     }
 
     ProductDTO product;
-    public void setProduct(ProductDTO product){
+
+    public void setProduct(ProductDTO product) {
         this.product = product;
     }
 
@@ -88,7 +96,7 @@ public class ProductDetail extends Fragment {
     ImageButton backBtn, addBtn;
     ImageView productImg;
 
-    private void bindElements(View view){
+    private void bindElements(View view) {
         id = view.findViewById(R.id.productDetailId);
         name = view.findViewById(R.id.productDetailName);
         description = view.findViewById(R.id.productDetailDes);
@@ -108,7 +116,7 @@ public class ProductDetail extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addProductToCart(product);
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -122,5 +130,52 @@ public class ProductDetail extends Fragment {
         });
 
 
+    }
+
+    private void addProductToCart(ProductDTO product) {
+        CartDAO cartDAO = new CartDAO(getActivity());
+        List<CartDTO> productsList = cartDAO.getCartOfUser(MainActivity.user.getId());
+        if (productsList.isEmpty() || productsList == null) {
+            Toast.makeText(getActivity(), "Error when trying to add item to cart!", Toast.LENGTH_SHORT).show();
+
+        } else {
+            boolean isInCart = false;
+            int itemPosition = -1;
+            for (CartDTO pd : productsList) {
+                if (pd.getProduct().getId() == product.getId()) {
+                    isInCart = true;
+                    itemPosition = productsList.indexOf(pd);
+                    break;
+                }
+            }
+
+            if (isInCart && itemPosition != -1) {
+                CartProductDTO item = new CartProductDTO();
+                item.setProductId(product.getId());
+                item.setQuantity(productsList.get(itemPosition).getQuantity() + 1);
+                boolean result = cartDAO.updateCartProductQuantity(MainActivity.user.getId(), item);
+
+                if (result) {
+                    makeToastText("Product is in cart. Increase product quantity!");
+                } else {
+                    makeToastText("Failed to add product to cart!");
+                }
+            } else {
+                CartProductDTO item = new CartProductDTO();
+                item.setProductId(product.getId());
+                item.setQuantity(1);
+                boolean result = cartDAO.addProductToCart(MainActivity.user.getId(), item);
+                if (result) {
+                    makeToastText("Add product to cart successfully!");
+                } else {
+                    makeToastText("Failed to add product to cart!");
+                }
+            }
+        }
+    }
+
+    private void makeToastText(String msg) {
+        Toast toast = Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
