@@ -1,6 +1,11 @@
 package com.example.yumyumnow;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,21 +13,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
 import com.example.yumyumnow.dao.BillDAO;
 import com.example.yumyumnow.dto.BillDTO;
 import com.example.yumyumnow.dto.BillDetailDTO;
 import com.example.yumyumnow.util.adapters.BillDetailAdapter;
-import com.example.yumyumnow.util.adapters.BillHistoryAdapter;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,10 +87,12 @@ public class BillDetailFragment extends Fragment {
     BillDTO bill;
     List<BillDetailDTO> billDetailList;
     int billId;
-    public void setBillId(int billId){
+
+    public void setBillId(int billId) {
         this.billId = billId;
     }
-    private void loadData(){
+
+    private void loadData() {
         billDAO = new BillDAO(getActivity());
         bill = billDAO.getBillById(billId);
         billDetailList = bill.getBillDetails();
@@ -103,7 +101,8 @@ public class BillDetailFragment extends Fragment {
     ImageButton backBtn;
     RecyclerView billDetailRVList;
     TextView id, date, price;
-    private void bindElements(View view){
+
+    private void bindElements(View view) {
         backBtn = view.findViewById(R.id.historyBackBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +125,7 @@ public class BillDetailFragment extends Fragment {
 
     }
 
-    private void switchFragment(Fragment fragment){
+    private void switchFragment(Fragment fragment) {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, fragment);
