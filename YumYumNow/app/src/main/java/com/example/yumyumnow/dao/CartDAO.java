@@ -106,6 +106,15 @@ public class CartDAO {
         return (row > 0);
     }
 
+    public boolean removeUserCart(int userId) {
+        ContentResolver contentResolver = context.getContentResolver();
+        String selection = DBHelper.COL_CART_USER_ID + " = ? ";
+        String[] selectionArgs = new String[]{String.valueOf(userId)};
+
+        int row = contentResolver.delete(uri, selection, selectionArgs);
+        return (row > 0);
+    }
+
 
     @NonNull
     private List<CartDTO> getCartsFromCursor(Cursor cursor) {

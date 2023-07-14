@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("avatar", result.getAvatar());
 
             startActivity(intent);
+            finish();
         }
 
     }
