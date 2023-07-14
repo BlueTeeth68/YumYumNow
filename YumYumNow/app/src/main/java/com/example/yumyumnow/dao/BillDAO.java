@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.net.Uri;
 
 import com.example.yumyumnow.database.DBHelper;
@@ -40,6 +41,8 @@ public class BillDAO {
             totalPrice += productDTOList.get(i).getPrice() * productItems.get(i).getQuantity();
         }
 
+        System.out.println(totalPrice);
+
         ContentResolver contentResolver = context.getContentResolver();
 
         //Create bill
@@ -56,13 +59,21 @@ public class BillDAO {
         //Create list Bill detail
 
         for (int i = 0; i < productDTOList.size(); i++) {
-            cv = new ContentValues();
-            cv.put(DBHelper.COL_BILL_DETAIL_BILL_ID, billId);
-            cv.put(DBHelper.COL_BILL_DETAIL_PRODUCT_ID, productDTOList.get(i).getId());
-            cv.put(DBHelper.COL_BILL_DETAIL_QUANTITY, productItems.get(i).getQuantity());
-            cv.put(DBHelper.COL_BILL_DETAIL_PRICE, productDTOList.get(i).getPrice());
-//
-//            result = contentResolver.insert(uriBillDetail, cv);
+            try {
+                cv = new ContentValues();
+                cv.put(DBHelper.COL_BILL_DETAIL_BILL_ID, billId);
+                cv.put(DBHelper.COL_BILL_DETAIL_PRODUCT_ID, productDTOList.get(i).getId());
+                cv.put(DBHelper.COL_BILL_DETAIL_QUANTITY, productItems.get(i).getQuantity());
+                cv.put(DBHelper.COL_BILL_DETAIL_PRICE, productDTOList.get(i).getPrice());
+
+                System.out.println("Product Id: " + productDTOList.get(i).getId());
+                System.out.println("Product Quantity: " + productItems.get(i).getQuantity());
+                System.out.println("Product Price: " + productDTOList.get(i).getPrice());
+
+                result = contentResolver.insert(uriBillDetail, cv);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         //Create list Bill detail
 

@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_BILL_DETAIL_QUANTITY = "quantity";
     public static final String COL_BILL_DETAIL_PRICE = "price";
 
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
 
 
     public DBHelper(@Nullable Context context) {
@@ -137,23 +137,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         // Insert sample data for the bill table
-        String insertBillQuery = "INSERT INTO " + TABLE_BILL_NAME + " (" +
-                COL_BILL_USER_ID + ", " + COL_BILL_TOTAL_PRICE + ", " +
-                COL_BILL_CREATE_DATE + ") VALUES (?, ?, ?);";
-
-        db.execSQL(insertBillQuery, new Object[]{1, 50.99, "2022-01-01"});
-        db.execSQL(insertBillQuery, new Object[]{2, 30.50, "2022-02-15"});
-        // Insert sample data for the bill table
-
-
-        // Insert sample data for the bill detail table
-        String insertBillDetailQuery = "INSERT INTO " + TABLE_BILL_DETAIL_NAME + " (" +
-                COL_BILL_DETAIL_BILL_ID + ", " + COL_BILL_DETAIL_PRODUCT_ID + ", " +
-                COL_BILL_DETAIL_QUANTITY + ", " + COL_BILL_DETAIL_PRICE + ") VALUES (?, ?, ?, ?);";
-
-        db.execSQL(insertBillDetailQuery, new Object[]{1, 1, 2, 20.99});
-        db.execSQL(insertBillDetailQuery, new Object[]{1, 2, 1, 19.99});
-        db.execSQL(insertBillDetailQuery, new Object[]{2, 3, 3, 15.50});
+//        String insertBillQuery = "INSERT INTO " + TABLE_BILL_NAME + " (" +
+//                COL_BILL_USER_ID + ", " + COL_BILL_TOTAL_PRICE + ", " +
+//                COL_BILL_CREATE_DATE + ") VALUES (?, ?, ?);";
+//
+//        db.execSQL(insertBillQuery, new Object[]{1, 50.99, "2022-01-01"});
+//        db.execSQL(insertBillQuery, new Object[]{2, 30.50, "2022-02-15"});
+//        // Insert sample data for the bill table
+//
+//
+//        // Insert sample data for the bill detail table
+//        String insertBillDetailQuery = "INSERT INTO " + TABLE_BILL_DETAIL_NAME + " (" +
+//                COL_BILL_DETAIL_BILL_ID + ", " + COL_BILL_DETAIL_PRODUCT_ID + ", " +
+//                COL_BILL_DETAIL_QUANTITY + ", " + COL_BILL_DETAIL_PRICE + ") VALUES (?, ?, ?, ?);";
+//
+//        db.execSQL(insertBillDetailQuery, new Object[]{1, 1, 2, 20.99});
+//        db.execSQL(insertBillDetailQuery, new Object[]{1, 2, 1, 19.99});
+//        db.execSQL(insertBillDetailQuery, new Object[]{2, 3, 3, 15.50});
         // Insert sample data for the bill detail table
     }
 

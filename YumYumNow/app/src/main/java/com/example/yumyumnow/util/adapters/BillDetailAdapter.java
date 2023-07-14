@@ -36,14 +36,16 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.Bi
     @Override
     public void onBindViewHolder(@NonNull BillDetailAdapter.BillDetailViewHolder holder, int position) {
         BillDetailDTO billDetail = billDetails.get(position);
-        if(billDetail == null) {
+        if (billDetail == null) {
             return;
         }
         holder.image.setImageResource(billDetail.getProduct().getImage());
         holder.name.setText(String.valueOf(billDetail.getProduct().getName()));
         DecimalFormat df = new DecimalFormat("#.##");
-        String billDetailPriceString = df.format(billDetail.getPrice() * billDetail.getQuantity());
-        holder.price.setText(billDetailPriceString + " $");
+        double totalPrice = billDetail.getPrice() * billDetail.getQuantity();
+        String billDetailPriceString = df.format(totalPrice);
+//        holder.price.setText(String.valueOf(billDetailPriceString) + " $");
+        holder.price.setText(billDetailPriceString == null ? "" : billDetailPriceString + " $");
         holder.quantity.setText(String.valueOf(billDetail.getQuantity()));
 
     }
@@ -61,7 +63,7 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.Bi
             super(itemView);
             name = itemView.findViewById(R.id.billDetailName);
             quantity = itemView.findViewById(R.id.billDetailQuantity);
-            price = itemView.findViewById(R.id.billDetailPrice);
+            price = itemView.findViewById(R.id.billDetailTotalPrice);
             image = itemView.findViewById(R.id.billDetailImg);
         }
     }
