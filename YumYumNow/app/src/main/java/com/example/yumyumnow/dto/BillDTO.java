@@ -8,7 +8,7 @@ public class BillDTO {
 
     private int id;
     private int userId;
-    private int totalPrice;
+    private double totalPrice;
     private String createDate;
     private List<BillDetailDTO> billDetails = new ArrayList<>();
 
@@ -37,11 +37,11 @@ public class BillDTO {
         this.userId = userId;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

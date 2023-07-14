@@ -81,16 +81,20 @@ public class CartDAO {
     }
 
     public boolean updateCartProductQuantity(int userId, CartProductDTO productItem) {
-        ContentResolver contentResolver = context.getContentResolver();
 
-        ContentValues cv = new ContentValues();
-        cv.put(DBHelper.COL_CART_QUANTITY, productItem.getQuantity());
-        String selection = DBHelper.COL_CART_USER_ID + " = ? AND " + DBHelper.COL_CART_PRODUCT_ID + " = ?";
-        String[] selectionArgs = new String[]{String.valueOf(userId), String.valueOf(productItem.getProductId())};
+        if (productItem.getQuantity() <= 0) {
+            return removeProductFromCart(userId, productItem);
+        } else {
+            ContentResolver contentResolver = context.getContentResolver();
 
-        int result = contentResolver.update(uri, cv, selection, selectionArgs);
-        return (result > 0);
+            ContentValues cv = new ContentValues();
+            cv.put(DBHelper.COL_CART_QUANTITY, productItem.getQuantity());
+            String selection = DBHelper.COL_CART_USER_ID + " = ? AND " + DBHelper.COL_CART_PRODUCT_ID + " = ?";
+            String[] selectionArgs = new String[]{String.valueOf(userId), String.valueOf(productItem.getProductId())};
 
+            int result = contentResolver.update(uri, cv, selection, selectionArgs);
+            return (result > 0);
+        }
     }
 
     public boolean removeProductFromCart(int userId, CartProductDTO productItem) {
