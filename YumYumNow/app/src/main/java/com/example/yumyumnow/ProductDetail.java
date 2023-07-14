@@ -70,8 +70,7 @@ public class ProductDetail extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_product_detail, container, false);
 
@@ -135,10 +134,21 @@ public class ProductDetail extends Fragment {
     private void addProductToCart(ProductDTO product) {
         CartDAO cartDAO = new CartDAO(getActivity());
         List<CartDTO> productsList = cartDAO.getCartOfUser(MainActivity.user.getId());
+        // if products list empty
+        // add product to cart with quantity = 1
         if (productsList.isEmpty() || productsList == null) {
-            Toast.makeText(getActivity(), "Error when trying to add item to cart!", Toast.LENGTH_SHORT).show();
+            CartProductDTO item = new CartProductDTO();
+            item.setProductId(product.getId());
+            item.setQuantity(1);
+            boolean result = cartDAO.addProductToCart(MainActivity.user.getId(), item);
+            if (result) {
+                makeToastText("Add product to cart successfully!");
+            } else {
+                makeToastText("Failed to add product to cart!");
+            }
 
         } else {
+            // check if product is already in cart
             boolean isInCart = false;
             int itemPosition = -1;
             for (CartDTO pd : productsList) {
@@ -148,7 +158,8 @@ public class ProductDetail extends Fragment {
                     break;
                 }
             }
-
+            // if product is in cart
+            // increase product quantity by 1
             if (isInCart && itemPosition != -1) {
                 CartProductDTO item = new CartProductDTO();
                 item.setProductId(product.getId());
@@ -161,6 +172,8 @@ public class ProductDetail extends Fragment {
                     makeToastText("Failed to add product to cart!");
                 }
             } else {
+                // if product is not in cart
+                // add product to cart with quantity = 1
                 CartProductDTO item = new CartProductDTO();
                 item.setProductId(product.getId());
                 item.setQuantity(1);

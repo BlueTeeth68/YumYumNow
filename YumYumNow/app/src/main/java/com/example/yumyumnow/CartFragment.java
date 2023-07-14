@@ -3,12 +3,15 @@ package com.example.yumyumnow;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yumyumnow.dao.CartDAO;
@@ -70,6 +73,7 @@ public class CartFragment extends Fragment {
     List<CartDTO> cartProducts;
     CartDAO cartDao;
     RecyclerView productsRecyclerView;
+    Button checkoutBtn;
     CartProductAdapter cartProductAdapter;
 
     @Override
@@ -84,19 +88,25 @@ public class CartFragment extends Fragment {
 
         loadCartProducts();
 
+        checkoutCondition();
+
         return view;
     }
 
     public void loadCartProducts() {
         List<CartDTO> list = cartDao.getCartOfUser(MainActivity.user.getId());
         if (list == null || list.isEmpty()) {
+            cartProducts = list;
+            setCartProductsList(list);
             Toast.makeText(getActivity(), "User has no item in cart!", Toast.LENGTH_SHORT).show();
         } else {
+            cartProducts = list;
             setCartProductsList(list);
         }
     }
 
     private void setCartProductsList(List<CartDTO> products) {
+        checkoutCondition();
         cartProductAdapter = new CartProductAdapter(products, getActivity(), getActivity().getSupportFragmentManager(), this);
         productsRecyclerView.setAdapter(cartProductAdapter);
         productsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -105,6 +115,28 @@ public class CartFragment extends Fragment {
     private void bindElements(View view) {
         // cart product recycler view
         productsRecyclerView = view.findViewById(R.id.cartProductRecyclerView);
+
+        // checkout button
+        checkoutBtn = view.findViewById(R.id.checkOutBtn);
+        checkoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.frameLayout, new CheckoutFragment());
+                ft.commit();
+            }
+        });
+    }
+
+    private void checkoutCondition() {
+        if (cartProducts == null || cartProducts.isEmpty()) {
+            checkoutBtn.setEnabled(false);
+            checkoutBtn.setClickable(false);
+        } else {
+            checkoutBtn.setEnabled(true);
+            checkoutBtn.setClickable(true);
+        }
     }
 
 }

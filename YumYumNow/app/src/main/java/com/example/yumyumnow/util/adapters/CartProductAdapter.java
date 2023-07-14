@@ -76,6 +76,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             @Override
             public void onClick(View v) {
                 increaseQuantity(cartProduct);
+                refreshCart();
             }
         });
 
@@ -83,6 +84,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             @Override
             public void onClick(View v) {
                 decreaseQuantity(cartProduct);
+                refreshCart();
             }
         });
 
@@ -90,6 +92,7 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             @Override
             public void onClick(View v) {
                 removeItem(cartProduct);
+                refreshCart();
             }
         });
     }
@@ -101,7 +104,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         boolean result = cartDAO.removeProductFromCart(item.getUserId(), removingItem);
         if(result){
             makeToastText("Remove product from cart successfully!");
-            refreshCart();
         }else{
             makeToastText("Error when trying to remove product from cart");
         }
@@ -115,7 +117,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         boolean result = cartDAO.updateCartProductQuantity(item.getUserId(), increasingItem);
         if(result){
             makeToastText("Product quantity increased!");
-            refreshCart();
         }
         else{
             makeToastText("Error when trying to increase product quantity");
@@ -134,7 +135,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
             boolean result = cartDAO.updateCartProductQuantity(item.getUserId(), decreasingItem);
             if(result){
                 makeToastText("Product quantity decreased!");
-                refreshCart();
             }
             else{
                 makeToastText("Error when trying to decrease product quantity");

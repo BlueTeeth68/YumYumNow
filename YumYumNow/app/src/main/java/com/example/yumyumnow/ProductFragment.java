@@ -136,8 +136,8 @@ public class ProductFragment extends Fragment {
             public void onClick(View v) {
                 String cateFilter = getCategoryFilter();
                 String sortNameFilter = null, sortPriceFilter = null;
-                sortNameFilter = getSortSelect();
-                sortPriceFilter = getSortSelect();
+                sortNameFilter = getSortNameSelect();
+                sortPriceFilter = getSortPriceSelect();
                 String searchTxt = searchProductTxt.getText().toString().trim();
                 List<ProductDTO> result = productDAO.getProductByFilter(searchTxt, cateFilter, sortNameFilter, sortPriceFilter);
                 ArrayList<ProductDTO> arrayList = new ArrayList<>(result);
@@ -159,18 +159,29 @@ public class ProductFragment extends Fragment {
         }
     }
 
-    private String getSortSelect() {
+    private String getSortNameSelect() {
         int index = sortSpinner.getSelectedItemPosition();
         switch (index) {
             case 1:
-            case 3:
                 return ProductDAO.ASC;
             case 2:
+                return ProductDAO.DESC;
+            default:
+                return null;
+        }
+    }
+
+    private String getSortPriceSelect() {
+        int index = sortSpinner.getSelectedItemPosition();
+        switch (index) {
+            case 3:
+                return ProductDAO.ASC;
             case 4:
                 return ProductDAO.DESC;
             default:
                 return null;
         }
     }
+
 
 }
