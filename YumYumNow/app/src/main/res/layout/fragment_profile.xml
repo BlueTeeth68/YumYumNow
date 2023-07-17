@@ -14,7 +14,7 @@
 
         <Button
             android:id="@+id/showCheckoutHistoryBtn"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="#FFD600"
@@ -25,6 +25,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+        <Button
+            android:id="@+id/changePasswordBtn"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#FFD600"
+            android:text="Change Password"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/showCheckoutHistoryBtn" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

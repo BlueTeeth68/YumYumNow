@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
 
     ImageView avatarImg;
     EditText idTxt, usernameTxt, fullnameTxt;
-    Button showCheckout;
+    Button showCheckout, changePassword;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +105,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 switchFragment(new CheckoutHistoryFragment());
+            }
+        });
+
+        changePassword = view.findViewById(R.id.changePasswordBtn);
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchFragment(new ChangePasswordFragment());
             }
         });
     }
