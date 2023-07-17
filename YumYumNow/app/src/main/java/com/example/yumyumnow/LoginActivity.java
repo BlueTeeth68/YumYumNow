@@ -16,7 +16,7 @@ import com.example.yumyumnow.dto.UserLoginDTO;
 public class LoginActivity extends AppCompatActivity {
 
     EditText usernameTxt, passwordTxt;
-    Button loginBtn;
+    Button loginBtn, registerBtn;
 
     UserDAO userDao;
 
@@ -31,12 +31,21 @@ public class LoginActivity extends AppCompatActivity {
         usernameTxt = findViewById(R.id.usernameTxt);
         passwordTxt = findViewById(R.id.passwordTxt);
         loginBtn = findViewById(R.id.loginBtn);
+        registerBtn = findViewById(R.id.registerBtn);
 
         // Add listeners
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
