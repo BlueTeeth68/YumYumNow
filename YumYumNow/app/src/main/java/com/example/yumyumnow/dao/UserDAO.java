@@ -9,6 +9,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
+import com.example.yumyumnow.R;
 import com.example.yumyumnow.database.DBHelper;
 import com.example.yumyumnow.dto.UserDTO;
 import com.example.yumyumnow.dto.UserLoginDTO;
@@ -93,6 +94,7 @@ public class UserDAO {
         cv.put(DBHelper.COL_USER_USERNAME, register.getUsername());
         cv.put(DBHelper.COL_USER_FULL_NAME, register.getFullName());
         cv.put(DBHelper.COL_USER_PASSWORD, register.getPassword());
+        cv.put(DBHelper.COL_USER_AVATAR, R.drawable.avatar);
         try {
             Uri result = contentResolver.insert(uri, cv);
             if (result != null) {
@@ -113,18 +115,23 @@ public class UserDAO {
             return false;
         }
 
-        ContentResolver contentResolver = context.getContentResolver();
+        try {
+            ContentResolver contentResolver = context.getContentResolver();
 
-        ContentValues cv = new ContentValues();
-        cv.put(DBHelper.COL_USER_PASSWORD, newPassword);
-        String selection = DBHelper.COL_USER_ID + " = ? AND " + DBHelper.COL_USER_PASSWORD + " = ? ";
-        String[] selectionArgs = new String[]{String.valueOf(userId), oldPassword};
+            ContentValues cv = new ContentValues();
+            cv.put(DBHelper.COL_USER_PASSWORD, newPassword);
+            String selection = DBHelper.COL_USER_ID + " = ? AND " + DBHelper.COL_USER_PASSWORD + " = ? ";
+            String[] selectionArgs = new String[]{String.valueOf(userId), oldPassword};
 
-        int result = contentResolver.update(uri, cv, selection, selectionArgs);
-        return (result > 0);
-
+            int result = contentResolver.update(uri, cv, selection, selectionArgs);
+            return (result > 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
+    //not use
     private String getUserPassword(int id) {
         ContentResolver contentResolver = context.getContentResolver();
 
@@ -132,7 +139,6 @@ public class UserDAO {
                 DBHelper.COL_USER_PASSWORD
         };
 
-        //check equal ignore case
         String selection = DBHelper.COL_USER_ID + " = ? ";
         String[] selectionArgs = new String[]{String.valueOf(id)};
 
