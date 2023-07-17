@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_BILL_DETAIL_QUANTITY = "quantity";
     public static final String COL_BILL_DETAIL_PRICE = "price";
 
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
 
 
     public DBHelper(@Nullable Context context) {
@@ -165,37 +165,37 @@ public class DBHelper extends SQLiteOpenHelper {
                 COL_PRODUCT_CATEGORY + ") VALUES (?, ?, ?, ?, ?);";
 
         // Fast food products for children
-        db.execSQL(insertProductQuery, new Object[]{"Happy Meal", "A popular kid's meal from McDonald's that includes a burger, fries, and a toy.", defaultAvatar, 5.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Nuggets", "Bite-sized pieces of chicken that are breaded and fried. A favorite among kids!", defaultAvatar, 3.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Kids Cheeseburger", "A classic cheeseburger from Wendy's that's just the right size for kids.", defaultAvatar, 2.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Mac and Cheese", "A creamy and cheesy pasta dish that's a staple on many kids' menus.", defaultAvatar, 4.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Mini Corn Dogs", "Hot dogs coated in a cornmeal batter and deep-fried. A fun and tasty snack for kids!", defaultAvatar, 3.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Pizza", "A cheesy and delicious pie that's a favorite among kids. Choose from toppings like pepperoni, sausage, and veggies.", defaultAvatar, 8.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Chicken Fingers", "Tender strips of chicken that are breaded and fried. Served with dipping sauce for extra fun!", defaultAvatar, 5.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Grilled Cheese", "Melted cheese between two slices of bread. A classic and comforting sandwich that's perfect for kids.", defaultAvatar, 3.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Hot Dog", "A classic American snack that's especially popular among kids. Top with ketchup, mustard, and relish for extra flavor!", defaultAvatar, 2.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Happy Meal", "A popular kid's meal from McDonald's that includes a burger, fries, and a toy.", R.drawable.happy_meal, 5.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Nuggets", "Bite-sized pieces of chicken that are breaded and fried. A favorite among kids!", R.drawable.nuggets, 3.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Kids Cheeseburger", "A classic cheeseburger from Wendy's that's just the right size for kids.", R.drawable.kid_cheese_burger, 2.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Mac and Cheese", "A creamy and cheesy pasta dish that's a staple on many kids' menus.", R.drawable.mac_and_cheese, 4.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Mini Corn Dogs", "Hot dogs coated in a cornmeal batter and deep-fried. A fun and tasty snack for kids!", R.drawable.mini_corn_dog, 3.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Pizza", "A cheesy and delicious pie that's a favorite among kids. Choose from toppings like pepperoni, sausage, and veggies.", R.drawable.pizza, 8.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Chicken Fingers", "Tender strips of chicken that are breaded and fried. Served with dipping sauce for extra fun!", R.drawable.chicken_finger, 5.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Grilled Cheese", "Melted cheese between two slices of bread. A classic and comforting sandwich that's perfect for kids.", R.drawable.grilled_cheese, 3.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Hot Dog", "A classic American snack that's especially popular among kids. Top with ketchup, mustard, and relish for extra flavor!", R.drawable.hot_dog, 2.99, "Food"});
 
         // Popular drinks
-        db.execSQL(insertProductQuery, new Object[]{"Coca-Cola", "A classic soda that's been around for over a century. Known for its sweet and fizzy taste.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Pepsi", "A rival to Coca-Cola, Pepsi is another popular soda that's beloved by many. It has a slightly sweeter taste than Coke.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Sprite", "A refreshing lemon-lime soda that's perfect for quenching your thirst on a hot day.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Fanta", "A fruity and colorful soda that comes in a variety of flavors, including orange, grape, and strawberry.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Mountain Dew", "A citrus-flavored soda that's known for its bright green color. It's a favorite among gamers and extreme sports enthusiasts.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Dr. Pepper", "A unique soda with a blend of 23 flavors. Its taste is hard to describe, but it's often compared to cherry cola.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Gatorade", "A sports drink that's designed to replenish electrolytes lost during exercise. Comes in a variety of flavors.", defaultAvatar, 2.49, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Iced Tea", "A refreshing and lightly sweetened tea that's perfect for sipping on a hot day.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Lemonade", "A sweet and tangy drink made with lemon juice and sugar. Perfect for quenching your thirst on a summer day.", defaultAvatar, 2.49, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Coca-Cola", "A classic soda that's been around for over a century. Known for its sweet and fizzy taste.", R.drawable.coca_cola, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Pepsi", "A rival to Coca-Cola, Pepsi is another popular soda that's beloved by many. It has a slightly sweeter taste than Coke.", R.drawable.pepsi, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Sprite", "A refreshing lemon-lime soda that's perfect for quenching your thirst on a hot day.", R.drawable.sprite, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Fanta", "A fruity and colorful soda that comes in a variety of flavors, including orange, grape, and strawberry.", R.drawable.fanta, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Mountain Dew", "A citrus-flavored soda that's known for its bright green color. It's a favorite among gamers and extreme sports enthusiasts.", R.drawable.mountain_dew, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Dr. Pepper", "A unique soda with a blend of 23 flavors. Its taste is hard to describe, but it's often compared to cherry cola.", R.drawable.dr_peper, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Gatorade", "A sports drink that's designed to replenish electrolytes lost during exercise. Comes in a variety of flavors.", R.drawable.gatorade, 2.49, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Iced Tea", "A refreshing and lightly sweetened tea that's perfect for sipping on a hot day.", R.drawable.ice_tea, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Lemonade", "A sweet and tangy drink made with lemon juice and sugar. Perfect for quenching your thirst on a summer day.", R.drawable.lemonade, 2.49, "Drink"});
 
         // More fast food products for children
-        db.execSQL(insertProductQuery, new Object[]{"Chicken Nuggets", "Bite-sized pieces of chicken that are breaded and fried. A favorite among kids!", defaultAvatar, 3.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Cheese Pizza", "A classic pizza topped with tomato sauce and melted cheese. A favorite among kids!", defaultAvatar, 8.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"French Fries", "Thin and crispy potato sticks that are often served as a side dish with burgers and sandwiches.", defaultAvatar, 2.49, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Chocolate Milkshake", "A creamy and indulgent drink made with chocolate ice cream and milk. Perfect for satisfying your sweet tooth!", defaultAvatar, 3.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Cheeseburger", "A classic burger topped with melted cheese. Can be customized with toppings like lettuce, tomato, and pickles.", defaultAvatar, 5.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Chicken Sandwich", "A sandwich made with a crispy chicken patty, lettuce, and mayo. A favorite among kids and adults alike.", defaultAvatar, 4.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Milk", "A nutritious drink that's rich in calcium and vitamins. Perfect for growing kids!", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"Root Beer", "A sweet and bubbly soda with a unique flavor. Often served in a frosted mug.", defaultAvatar, 1.99, "Drink"});
-        db.execSQL(insertProductQuery, new Object[]{"M&M McFlurry", "A decadent dessert made with soft-serve ice cream and M&M candies. A popular treat at McDonald's!", defaultAvatar, 3.99, "Food"});
-        db.execSQL(insertProductQuery, new Object[]{"Oreo Milkshake", "A creamy and indulgent drink made with Oreo cookies and milk. Perfect for satisfying your sweet tooth!", defaultAvatar, 3.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Chicken Nuggets", "Bite-sized pieces of chicken that are breaded and fried. A favorite among kids!", R.drawable.chicken_nugget, 3.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Cheese Pizza", "A classic pizza topped with tomato sauce and melted cheese. A favorite among kids!", R.drawable.cheese_pizza, 8.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"French Fries", "Thin and crispy potato sticks that are often served as a side dish with burgers and sandwiches.", R.drawable.french_fries, 2.49, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Chocolate Milkshake", "A creamy and indulgent drink made with chocolate ice cream and milk. Perfect for satisfying your sweet tooth!", R.drawable.chocolate_milkshake, 3.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Cheeseburger", "A classic burger topped with melted cheese. Can be customized with toppings like lettuce, tomato, and pickles.", R.drawable.cheese_burger, 5.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Chicken Sandwich", "A sandwich made with a crispy chicken patty, lettuce, and mayo. A favorite among kids and adults alike.", R.drawable.chicken_sandwich, 4.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Milk", "A nutritious drink that's rich in calcium and vitamins. Perfect for growing kids!", R.drawable.milk, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"Root Beer", "A sweet and bubbly soda with a unique flavor. Often served in a frosted mug.", R.drawable.root_beer, 1.99, "Drink"});
+        db.execSQL(insertProductQuery, new Object[]{"M&M McFlurry", "A decadent dessert made with soft-serve ice cream and M&M candies. A popular treat at McDonald's!", R.drawable.mc_flurry, 3.99, "Food"});
+        db.execSQL(insertProductQuery, new Object[]{"Oreo Milkshake", "A creamy and indulgent drink made with Oreo cookies and milk. Perfect for satisfying your sweet tooth!", R.drawable.oreo_milkshake, 3.99, "Drink"});
     }
 }
