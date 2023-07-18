@@ -58,8 +58,9 @@
 
             <EditText
                 android:id="@+id/searchProductTxt"
-                android:layout_width="250dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/input_field_background"
                 android:ems="10"
@@ -68,19 +69,6 @@
                 android:paddingLeft="10dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/searchProductImgBtn"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
-                android:text="Products"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,27 +76,26 @@
                 android:id="@+id/categorySpinner"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/input_field_background"
                 android:foregroundTint="#FFFFFF"
                 android:overlapAnchor="false"
                 android:paddingLeft="10dp"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/sortSpinner"
+                app:layout_constraintStart_toStartOf="@+id/searchProductTxt"
                 app:layout_constraintTop_toBottomOf="@+id/searchProductTxt" />
 
             <Spinner
                 android:id="@+id/sortSpinner"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/input_field_background"
                 android:foregroundTint="#FFFFFF"
                 android:overlapAnchor="false"
                 android:paddingLeft="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/searchProductImgBtn"
+                app:layout_constraintStart_toEndOf="@+id/categorySpinner"
                 app:layout_constraintTop_toBottomOf="@+id/searchProductTxt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

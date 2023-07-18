@@ -13,11 +13,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checkoutProductList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:maxHeight="500dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -104,7 +106,7 @@
             android:id="@+id/confirmBtn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="40dp"
             android:backgroundTint="#64DD17"
             android:text="Confirm"
