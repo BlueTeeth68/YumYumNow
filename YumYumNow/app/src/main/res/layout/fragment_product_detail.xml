@@ -60,14 +60,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:visibility="invisible"
                     android:id="@+id/textView8"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="24dp"
                     android:text="ID:"
                     android:textColor="#6C6C6C"
                     android:textSize="18dp"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/productDetailId" />
 
@@ -120,63 +120,60 @@
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
-                    android:visibility="invisible"
                     android:id="@+id/productDetailId"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:text="Product ID"
                     android:textSize="18dp"
                     android:textStyle="bold"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toEndOf="@+id/textView8"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailImg" />
 
                 <TextView
                     android:id="@+id/productDetailName"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Product Name"
                     android:textSize="18dp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/productDetailId"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailId" />
 
                 <TextView
                     android:id="@+id/productDetailDes"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Product Description"
                     android:textSize="18dp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/productDetailId"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailName" />
 
                 <TextView
                     android:id="@+id/productDetailCate"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Product Category"
                     android:textSize="18dp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/productDetailId"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailDes" />
 
                 <TextView
                     android:id="@+id/productDetailPrice"
-                    android:layout_width="200dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Product Price"
                     android:textSize="18dp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/productDetailId"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailCate" />
 
                 <ImageButton
+                    android:background="@drawable/image_view_background"
                     android:id="@+id/addBtn"
                     android:layout_width="350dp"
                     android:layout_height="60dp"
