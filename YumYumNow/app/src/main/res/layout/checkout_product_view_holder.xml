@@ -15,7 +15,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:background="@drawable/cardview_background"
+            android:layout_marginHorizontal="5dp">
 
             <TextView
                 android:id="@+id/checkoutProductPrice"
@@ -33,7 +36,7 @@
                 android:id="@+id/checkoutProductQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:text="3"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -44,7 +47,7 @@
                 android:id="@+id/checkoutProductName"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:text="Milk"
                 android:textSize="16sp"
                 android:textStyle="bold"
