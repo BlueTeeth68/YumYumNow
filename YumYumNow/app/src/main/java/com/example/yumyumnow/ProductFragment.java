@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -80,6 +81,7 @@ public class ProductFragment extends Fragment {
     Button searchBtn;
     ProductDAO productDAO;
     ProductAdapter productAdapter;
+    ImageButton search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -157,6 +159,23 @@ public class ProductFragment extends Fragment {
         // search button
         searchBtn = view.findViewById(R.id.searchProductBtn);
         searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cateFilter = getCategoryFilter();
+                String sortNameFilter = null, sortPriceFilter = null;
+                sortNameFilter = getSortNameSelect();
+                sortPriceFilter = getSortPriceSelect();
+                String searchTxt = searchProductTxt.getText().toString().trim();
+                List<ProductDTO> result = productDAO.getProductByFilter(searchTxt, cateFilter, sortNameFilter, sortPriceFilter);
+                ArrayList<ProductDTO> arrayList = new ArrayList<>(result);
+
+                setProductsList(arrayList);
+            }
+        });
+
+        search = view.findViewById(R.id.searchProductImgBtn);
+
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String cateFilter = getCategoryFilter();
