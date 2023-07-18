@@ -1,5 +1,6 @@
 package com.example.yumyumnow;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -65,7 +66,7 @@ public class ProfileFragment extends Fragment {
 
     ImageView avatarImg;
     EditText idTxt, usernameTxt, fullnameTxt;
-    Button showCheckout, changePassword;
+    Button showCheckout, changePassword, logout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,6 +116,14 @@ public class ProfileFragment extends Fragment {
                 switchFragment(new ChangePasswordFragment());
             }
         });
+
+        logout = view.findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
     }
 
     private void switchFragment(Fragment fragment){
@@ -122,5 +131,12 @@ public class ProfileFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, fragment);
         ft.commit();
+    }
+
+    private void logout(){
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        MainActivity.user = null;
+        startActivity(intent);
+        getActivity().finish();
     }
 }
