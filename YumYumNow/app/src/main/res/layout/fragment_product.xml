@@ -10,6 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
@@ -36,19 +46,19 @@
                 android:id="@+id/searchProductImgBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/search_icon"
                 android:foregroundTint="#FFFFFF"
                 android:text="Search"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/searchProductTxt"
-                app:layout_constraintStart_toStartOf="@+id/searchProductBtn"
+                app:layout_constraintEnd_toEndOf="@+id/searchProductBtn"
                 app:layout_constraintTop_toTopOf="@+id/searchProductTxt"
                 app:tint="#FFFFFF" />
 
             <EditText
                 android:id="@+id/searchProductTxt"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/input_field_background"
@@ -58,7 +68,7 @@
                 android:paddingLeft="10dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/searchProductBtn"
+                app:layout_constraintEnd_toStartOf="@+id/searchProductImgBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -78,38 +88,30 @@
                 android:id="@+id/categorySpinner"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/input_field_background"
                 android:foregroundTint="#FFFFFF"
                 android:overlapAnchor="false"
                 android:paddingLeft="10dp"
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/sortSpinner"
                 app:layout_constraintTop_toBottomOf="@+id/searchProductTxt" />
 
             <Spinner
                 android:id="@+id/sortSpinner"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 android:background="@drawable/input_field_background"
                 android:foregroundTint="#FFFFFF"
                 android:overlapAnchor="false"
                 android:paddingLeft="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/categorySpinner"
+                app:layout_constraintEnd_toEndOf="@+id/searchProductImgBtn"
                 app:layout_constraintTop_toBottomOf="@+id/searchProductTxt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
