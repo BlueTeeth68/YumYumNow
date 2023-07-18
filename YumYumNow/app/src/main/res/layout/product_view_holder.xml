@@ -51,7 +51,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:text="Product Name"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/cartProductLayout"
                 app:layout_constraintTop_toTopOf="parent" />
