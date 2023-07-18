@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_BILL_DETAIL_QUANTITY = "quantity";
     public static final String COL_BILL_DETAIL_PRICE = "price";
 
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 9;
 
 
     public DBHelper(@Nullable Context context) {

@@ -19,80 +19,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@null"
-        android:text="Username"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/usernameTxt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/usernameTxt"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
     <EditText
+        android:background="@drawable/input_field_background"
+        android:paddingLeft="15dp"
         android:id="@+id/usernameTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:foregroundTint="#FFFFFF"
         android:hint="Enter Username"
         android:inputType="text"
         android:textColor="@color/white"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#ACABAB"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Password"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/passwordTxt"
-        app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
+        android:background="@drawable/input_field_background"
+        android:paddingLeft="15dp"
         android:id="@+id/passwordTxt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:textColor="@color/white"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#ACABAB"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#FFFFFF"
         android:text="Login"
+        android:textColor="#4C6EF7"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:cornerRadius="10dp"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
@@ -100,14 +73,14 @@
     <Button
         android:id="@+id/registerBtn"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/white"
         android:text="Register"
-        android:textColor="@color/black"
+        android:textColor="#4C6EF7"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:cornerRadius="10dp"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -118,6 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Or"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
