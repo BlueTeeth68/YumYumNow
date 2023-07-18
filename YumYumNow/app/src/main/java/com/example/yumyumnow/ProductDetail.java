@@ -109,7 +109,7 @@ public class ProductDetail extends Fragment {
         name.setText(String.valueOf(product.getName()));
         description.setText(String.valueOf(product.getDescription()));
         category.setText(String.valueOf(product.getCategory()));
-        price.setText(String.valueOf(product.getPrice()));
+        price.setText(String.valueOf(product.getPrice()) + " $");
         productImg.setImageResource(product.getImage());
 
         addBtn.setOnClickListener(new View.OnClickListener() {

@@ -117,10 +117,12 @@ public class BillDetailFragment extends Fragment {
         price = view.findViewById(R.id.billDetailPrice);
 
         id.setText(String.valueOf(bill.getId()));
-        date.setText(String.valueOf(bill.getCreateDate()));
+
+        String dateString = bill.getCreateDate().substring(0, 10);
+        date.setText(dateString);
         DecimalFormat df = new DecimalFormat("#.##");
         String totalPriceString = df.format(bill.getTotalPrice());
-        price.setText(String.valueOf(totalPriceString));
+        price.setText(String.valueOf(totalPriceString) + " $");
 
 
     }

@@ -60,6 +60,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:visibility="invisible"
                     android:id="@+id/textView8"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -119,6 +120,7 @@
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <TextView
+                    android:visibility="invisible"
                     android:id="@+id/productDetailId"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
@@ -176,8 +178,8 @@
 
                 <ImageButton
                     android:id="@+id/addBtn"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="32dp"
                     android:backgroundTint="#00C853"
                     android:src="@drawable/cart_icon"

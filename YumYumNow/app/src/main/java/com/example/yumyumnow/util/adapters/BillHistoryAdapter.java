@@ -17,6 +17,9 @@ import com.example.yumyumnow.R;
 import com.example.yumyumnow.dto.BillDTO;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.BillViewHolder> {
@@ -41,10 +44,12 @@ public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.
     @Override
     public void onBindViewHolder(@NonNull BillHistoryAdapter.BillViewHolder holder, int position) {
         BillDTO bill = billList.get(position);
-        if(bill == null){
+        if (bill == null) {
             return;
         }
-        holder.billDate.setText(bill.getCreateDate());
+
+        String date = bill.getCreateDate().substring(0, 10);
+        holder.billDate.setText(date);
         DecimalFormat df = new DecimalFormat("#.##");
         String totalPriceString = df.format(bill.getTotalPrice());
         holder.billPrice.setText(totalPriceString + " $");
