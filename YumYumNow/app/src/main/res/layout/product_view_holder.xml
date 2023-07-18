@@ -10,23 +10,39 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginHorizontal="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:background="@drawable/cardview_background"
+            android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/productImg"
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cartProductLayout"
                 android:layout_width="120dp"
                 android:layout_height="80dp"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/productImg"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/productName"
@@ -37,7 +53,7 @@
                 android:text="Product Name"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/productImg"
+                app:layout_constraintStart_toEndOf="@+id/cartProductLayout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -48,14 +64,15 @@
                 android:layout_marginTop="8dp"
                 android:text="Product Price"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/productImg"
+                app:layout_constraintStart_toEndOf="@+id/cartProductLayout"
                 app:layout_constraintTop_toBottomOf="@+id/productName" />
 
             <ImageButton
                 android:id="@+id/addToCartBtn"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:backgroundTint="#EDF357"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#06AA00"
+                android:background="@drawable/image_view_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
